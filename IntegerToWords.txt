@@ -1,0 +1,45 @@
+class Solution {
+    static String intToWord(long n, String str, String[] oneToNinteen, String[] twenty_To_ninty) 
+    {
+        String res = "";
+        if (n > 19) 
+        {
+            if((int)n % 10!=0)
+            res += twenty_To_ninty[(int)n/ 10]+" "+ oneToNinteen[(int)n % 10];
+            
+            else
+            res += twenty_To_ninty[(int)n/ 10]+oneToNinteen[(int)n % 10];
+        }
+        else
+        {
+        res+=oneToNinteen[(int)n%100];
+        }
+        if(n>0)
+        res=res+" "+str;
+        return res;
+
+    }
+    String convertToWords(long n) 
+    {
+         String oneToNinteen[] = { "", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+                "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen" };
+
+        String twenty_To_ninty[] = { "", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty",
+                "ninety" };
+        StringBuilder sb = new StringBuilder();
+        String str = "";
+        str += intToWord((n / 10000000), "crore ", oneToNinteen, twenty_To_ninty);
+        str += intToWord((n / 100000) % 100, "lakh ", oneToNinteen, twenty_To_ninty);
+        str += intToWord((n / 1000) % 100, "thousand ", oneToNinteen, twenty_To_ninty);
+        str += intToWord((n / 100) % 10, "hundred ", oneToNinteen, twenty_To_ninty);
+        if (n > 100 && n % 100 != 0) {
+            str += "and ";
+        }
+
+        // 46
+
+        str += intToWord(n % 100, "", oneToNinteen, twenty_To_ninty);
+        
+        return str;
+    }
+}

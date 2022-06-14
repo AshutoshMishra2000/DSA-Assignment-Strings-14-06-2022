@@ -1,0 +1,33 @@
+class Solution{
+    String longestCommonPrefix(String arr[], int n){
+String com=arr[0];
+
+if(arr.length==1){
+    return arr[0];
+}
+for(int i=1;i<n;i++){
+    String newString=arr[i];
+    int j=0;
+    while(j<newString.length()&&j<com.length()){
+        if(newString.charAt(j)==com.charAt(j)){
+            j++;
+        }
+        else{
+            break;
+        }
+    }
+    
+    
+    
+    if(j==0){
+        return "-1";
+    }
+    
+  
+       com=com.substring(0,j);
+    
+    
+}
+return com;
+    }
+}
